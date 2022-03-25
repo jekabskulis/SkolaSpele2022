@@ -1,0 +1,60 @@
+body
+{
+    background-color: beige;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a
+{
+    text-decoration: none;
+    color: black;
+}
+
+h1
+{
+    font-size: 50px;
+}
+
+.centeredMain
+{
+    text-align: center;
+    margin-top: 20%;
+}
+
+button
+{
+    background-color: burlywood;
+    border: 10px solid rgb(253, 195, 123);
+    border-radius: 50px;
+    font-size: 100px;
+    margin: 20px;
+}
+
+.colours
+{
+    text-align: center;
+    margin-top: 10%;
+}
+
+.colours button
+{
+    background-color: burlywood;
+    border: 8px solid rgb(253, 195, 123);
+    border-radius: 25px;
+    font-size: 60px;
+}
+
+ul li
+{
+    list-style: none;
+}
+
+p
+{
+    font-size: 35px;
+}
+
+.centeredList
+{
+    text-align: center;
+}

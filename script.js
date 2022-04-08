@@ -78,16 +78,23 @@ function startColour()
 		});
 	}
 }
-
+//Spēles apstādināšanas funkcija
 function endTime()
 {
-	console.log("End Time test");
+	points = String(points);
+
+	localStorage.setItem("points", points);
+
+
+
+	alert("Spēles beigas\nIegūtais punktu skaits: " + points);
+	document.location.href = "./addToTop.html";
 }
 function startGame()
 {
 	
 	//Apstādina spēli pēc minūtes 60000ms = 60s
-	setTimeout(endTime, 60000);
+	setTimeout(endTime, 30000);
 	
 	changeColour();
 
@@ -111,8 +118,6 @@ function startGame()
 				
 				if(yh ==  0)
 				{
-					
-					
 					ctx.fillStyle = colourSet[p-1];
 					p+=8;
 					ctx.fillRect(xh, yh, 40, 80);
@@ -126,8 +131,6 @@ function startGame()
 				
 				if(yh == 80)
 				{
-
-					
 					ctx.fillStyle = colourSet[p-1];
 					p-=8;
 					ctx.fillRect(xh, yh, 40, 80);
@@ -141,8 +144,6 @@ function startGame()
 				
 				if(xh != 0)
 				{
-
-					
 					ctx.fillStyle = colourSet[p-1];
 					p--;
 					ctx.fillRect(xh, yh, 40, 80);
@@ -156,7 +157,6 @@ function startGame()
 				console.log("ArrowRight");
 				if(xh != 280)
 				{
-
 					ctx.fillStyle = colourSet[p-1];
 					p++;
 					ctx.fillRect(xh, yh, 40, 80);
@@ -181,16 +181,11 @@ function startGame()
 				const changeTime = new Date().getTime();
 				gameChange(clearID, changeTime);
 
-
-				
 				default:
 					return;
 		}
 		event.preventDefault();
 	}, true);
-
-	
-	
 }
 let inputColourCheck = 0;
 function gameChange(clearColour, changeTime)
@@ -233,39 +228,4 @@ function changeColour()
 	colourSet[clearID] = colourList[8];
 	ctx.fillStyle = colourList[8];
 	ctx.fillRect(xClear, yClear, 40, 80);
-}
-
-
-//
-//
-//      Top Players
-//
-//
-/*
-let playerTop = document.querySelector("#playerTopList");
-*/
-
-
-//Pievienot speletaja rezultatu topam.
-function inputData()
-{
-
-	let playerName = document.getElementById("playerName");
-	console.log(playerName.value);
-	let playerAge = document.getElementById("playerAge");
-	console.log(playerAge.value);
-	let playerRegion = document.getElementById("playerRegion");
-	console.log(playerRegion.value);
-	
-	if(playerAge.value != "" && playerName.value != "")
-	{
-		window.location.href = "topPlayers.html";
-	}
-	else
-	{
-		alert("Ierakstat spelētēja vārdu un/vai vecumu!");
-		window.location.href = "addToTop.html";
-	}
-
-
 }

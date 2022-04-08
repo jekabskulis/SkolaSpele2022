@@ -1,8 +1,5 @@
 //let difficutly;
 
-
-
-
 //
 //
 //      Colour Game
@@ -19,7 +16,6 @@ ctx.fillStyle = "yellowgreen";
 ctx.fillRect(0, 80, 320, 80);
 ctx.fillStyle = "yellowgreen";
 ctx.fillRect(0, 0, 320, 80);
-
 
 //Spēlētaja punkti
 let points = 0;
@@ -60,12 +56,6 @@ for (let i = 0; i < colourSet.length; i++)
 	colourSetOrgin[i] = colourSet[i];
 }
 
-
-
-
-//
-//		PĀRVIETOT ŠO KODU UZ "SĀKT" POGAS FUNKCIJU "StartColour()" !!!!!!
-//
 let gameStarted = 0;
 function startColour() 
 {
@@ -99,24 +89,10 @@ function startGame()
 	//Apstādina spēli pēc minūtes 60000ms = 60s
 	setTimeout(endTime, 60000);
 	
-	if (points > pointsOld)
-	{
-		//Iztukšo laukumus
-		clearID = Math.floor(Math.random() * 16);
-		let xClear = 0;
-		let yClear = 0;
-		xClear = 40*clearID;
-		if (xClear >= 320)
-		{
-			yClear = 80;
-		}
-		xClear = xClear % 320;
-		
-		colourSet[clearID] = colourList[8];
-		ctx.fillStyle = colourList[8];
-		ctx.fillRect(xClear, yClear, 40, 80);
-	}
-	
+	changeColour();
+
+	//Atzīmētā taisnstūra maiņa un tā izcelšana.
+	//Krāsu maiņa.
 	let xh = 0, yh = 0, p = 1, cP = 0;
 	document.addEventListener('keydown', function(event)
 	{
@@ -202,7 +178,8 @@ function startGame()
 				colourSet[p-1] = colourList[cP];
 				highlight.strokeRect(xh + 2, yh + 2, 35, 75);
 				
-				gameChange(clearID);
+				const changeTime = new Date().getTime();
+				gameChange(clearID, changeTime);
 
 
 				
@@ -215,25 +192,48 @@ function startGame()
 	
 	
 }
-let colourChanged = 0;
-function gameChange(clearColour)
+let inputColourCheck = 0;
+function gameChange(clearColour, changeTime)
 {
-	
 	if (colourSet[clearColour] != colourSetOrgin[clearColour])
 	{
 		return;
 	}
-	setTimeout(function()
+	if (inputColourCheck == 0)
 	{
-		if (colourChanged == 0)
+		setTimeout(function()
 		{
-				colourChanged++;
+			let changeNowTime = new Date().getTime();
+			let interval = Math.floor((changeNowTime - changeTime) / 1000);
+			if (interval == 1 && colourSet[clearColour] == colourSetOrgin[clearColour])
+			{
 				points++;
 				pointsOld++;
 				console.log("Punkti:", points);
+					
+				changeColour();
 			}
-	}, 1000);
+		}, 1000)
 	}
+}
+
+//Iztukšo laukumus
+function changeColour()
+{
+	clearID = Math.floor(Math.random() * 16);
+	let xClear = 0;
+	let yClear = 0;
+	xClear = 40*clearID;
+	if (xClear >= 320)
+	{
+	yClear = 80;
+	}
+	xClear = xClear % 320;
+	
+	colourSet[clearID] = colourList[8];
+	ctx.fillStyle = colourList[8];
+	ctx.fillRect(xClear, yClear, 40, 80);
+}
 
 
 //

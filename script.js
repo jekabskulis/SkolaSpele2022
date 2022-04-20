@@ -83,7 +83,7 @@ function endTime()
 {
 	points = String(points);
 
-	localStorage.setItem("points", points);
+	document.cookie = "points=" + points.toString() + "; SameSite=None; Secure";;
 
 
 
@@ -150,7 +150,6 @@ function startGame()
 					xh-=40;
 				}
 				
-
 				highlight.strokeRect(xh + 2, yh + 2, 35, 75);
 				break;
 			case "ArrowRight":

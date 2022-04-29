@@ -8,14 +8,7 @@
 let playerTop = document.querySelector("#playerTopList");
 */
 
-function getCookie(name) 
-{
-    return (document.cookie.match('(?:^|;)\\s*'+name.trim()+'\\s*=\\s*([^;]*?)\\s*(?:;|$)')||[])[1];
-}
-
-let points = getCookie("points");
-
-pointsHtml.innerHTML = "Punktu skaits: " + points;
+pointsHtml.innerHTML = "Punktu skaits: " + localStorage.getItem("playerP");
 
 //Pievienot speletaja rezultatu topam.
 function inputData()
@@ -29,9 +22,9 @@ function inputData()
 	
 	if(playerAge.value != "" && playerName.value != "")
 	{
-		document.cookie = "playerN=" + playerName.value.toString() + "; SameSite=None; Secure";
-		document.cookie = "playerA=" + playerAge.value.toString() + "; SameSite=None; Secure";
-		document.cookie = "playerR=" + playerRegion.value.toString() + "; SameSite=None; Secure";
+		localStorage.setItem("playerN", playerName.value);
+		localStorage.setItem("playerA", playerAge.value);
+		localStorage.setItem("playerR", playerRegion.value);
 		window.location.href = "topPlayers.html";
 	}
 	else
@@ -44,8 +37,4 @@ function inputData()
 
 
 
-/*
-localStorage.setItem("playerN", playerName.value);
-localStorage.setItem("playerA", playerAge.value);
-localStorage.setItem("playerR", playerRegion.value);
-*/
+

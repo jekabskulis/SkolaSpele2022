@@ -1,61 +1,28 @@
 
-let cookieTest = document.cookie;
+let newNameTop = localStorage.getItem("playerN");
+let newAgeTop = localStorage.getItem("playerA");
+let newRegionTop = localStorage.getItem("playerR");
+let newPointsTop = localStorage.getItem("playerP");
 
-function getCookie(name) 
+let playerTop = []; //2d array
+let newTopArr = [newNameTop, newAgeTop, newRegionTop, newPointsTop];
+
+if (playerTop.length == 0)
 {
-    return (document.cookie.match('(?:^|;)\\s*'+name.trim()+'\\s*=\\s*([^;]*?)\\s*(?:;|$)')||[])[1];
+    playerTop[playerTop.length] = newTopArr;
 }
 
-console.log(cookieTest);
-
-
-
-
-console.log(localStorage.getItem("topPlayerN"));
-
-let playerAge = getCookie("playerA");
-let playerName = getCookie("playerN");
-let playerRegion = getCookie("playerR");
-let playerPoints = getCookie("points");
-
-console.log(playerAge);
-console.log(playerName);
-console.log(playerRegion);
-console.log(playerPoints);
-
-console.log("LocalStorageTest");
-
-let topOpen = playerNameArr.length;
-
-if(topOpen == 0)
+for(let i = playerTop.length - 1; i > 0; i++)
 {
-    let playerNameArr = [];
-    let playerAgeArr = [];
-    let playerRegionArr = [];
-    let playerPointsArr = []; 
-    localStorage.setItem("topPlayerN", playerNameArr);
-    localStorage.setItem("topPlayerA", playerAgeArr);
-    localStorage.setItem("topPlayerR", playerRegionArr);
-    localStorage.setItem("topPlayerP", playerPointsArr);
+    if(playerTop[i][3] < newTopArr[3])
+    {
+        playerTop[i] = playerTop[i+1];
+        playerTop[i] = newTopArr;
+    }
 }
+console.log(playerTop);
 
-
-playerNameArr = localStorage.getItem("topPlayerN");
-playerAgeArr = localStorage.getItem("topPlayerA");
-playerRegionArr = localStorage.getItem("topPlayerR");
-playerPointsArr = localStorage.getItem("topPlayerP");
-
-playerNameArr[playerNameArr.length] = playerName;
-playerAgeArr[playerAgeArr.length] = playerAge;
-playerRegionArr[playerRegionArr.length] = playerRegion;
-playerPointsArr[playerNameArr.length] = playerPoints;
-
-localStorage.setItem("topPlayerN", playerNameArr);
-localStorage.setItem("topPlayerA", playerAgeArr);
-localStorage.setItem("topPlayerR", playerRegionArr);
-localStorage.setItem("topPlayerP", playerPointsArr);
-
-console.log(localStorage.getItem("topPlayerN"));
-console.log(localStorage.getItem("topPlayerA"));
-console.log(localStorage.getItem("topPlayerR"));
-console.log(localStorage.getItem("topPlayerP"));
+/*
+Tops piecās daļās, katrā daļā ir array, kurā ir visa informācija par spēlētāju.
+Punkti atrodas beigās.
+*/ 

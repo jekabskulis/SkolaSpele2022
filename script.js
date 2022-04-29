@@ -83,8 +83,7 @@ function endTime()
 {
 	points = String(points);
 
-	document.cookie = "points=" + points.toString() + "; SameSite=None; Secure";;
-
+	localStorage.setItem("playerP", points);
 
 
 	alert("Spēles beigas\nIegūtais punktu skaits: " + points);

@@ -93,7 +93,7 @@ function startGame()
 {
 	
 	//Apstādina spēli pēc minūtes 60000ms = 60s
-	setTimeout(endTime, 30000);
+	setTimeout(endTime, 10000);
 	
 	changeColour();
 

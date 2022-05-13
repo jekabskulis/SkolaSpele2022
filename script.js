@@ -28,6 +28,9 @@ let colourSet = [];
 let colourSetOrgin = [];
 let clearID;
 
+//Vērtība 1 ieslēdz krāsu izvadi.
+let seeColours = 0;
+
 for (let i = 0; i < 16; i++)
 {
 	colourID = Math.floor(Math.random() * 8);
@@ -40,7 +43,10 @@ for (let i = 0; i < 16; i++)
 		ctxY = 80;
 	}
 	ctxX = ctxX % 320;
-	console.log(ctxX, "\n", ctxY, "\n", colourSet[i], "\n", i);
+	if (seeColours == 1)
+	{
+		console.log(ctxX, "\n", ctxY, "\n", colourSet[i], "\n", i);
+	}
 	ctx.fillRect(ctxX, ctxY, 40, 80);
 	ctx.fillStyle = colourList[colourID];
 	
@@ -93,7 +99,7 @@ function startGame()
 {
 	
 	//Apstādina spēli pēc minūtes 60000ms = 60s
-	setTimeout(endTime, 10000);
+	setTimeout(endTime, 60000);
 	
 	changeColour();
 

@@ -60,3 +60,23 @@ p
 {
     text-align: center;
 }
+
+table th
+{
+    border: 10px solid black;
+}
+
+table
+{
+    width:800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    font-size: 50px;
+    border-collapse: collapse;
+}
+
+p
+{
+    font-weight: bold;
+}

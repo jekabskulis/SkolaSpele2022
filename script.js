@@ -91,8 +91,6 @@ function endTime()
 
 	localStorage.setItem("playerP", points);
 
-
-	alert("Spēles beigas\nIegūtais punktu skaits: " + points);
 	document.location.href = "./addToTop.html";
 }
 function startGame()

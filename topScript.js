@@ -1,28 +1,24 @@
+ 
 
-let newNameTop = localStorage.getItem("playerN");
-let newAgeTop = localStorage.getItem("playerA");
-let newRegionTop = localStorage.getItem("playerR");
-let newPointsTop = localStorage.getItem("playerP");
-
-let playerTop = []; //2d array
-let newTopArr = [newNameTop, newAgeTop, newRegionTop, newPointsTop];
-
-if (playerTop.length == 0)
+function setTopInfo()
 {
-    playerTop[playerTop.length] = newTopArr;
-}
-
-for(let i = playerTop.length - 1; i > 0; i++)
-{
-    if(playerTop[i][3] < newTopArr[3])
+    let playerData = JSON.parse(localStorage.getItem("playerData")) || [];
+    
+    const highScores = JSON.parse(localStorage.getItem("playerTop")) || [];
+    
+    const score =
     {
-        playerTop[i] = playerTop[i+1];
-        playerTop[i] = newTopArr;
+        name:   playerData[0],
+        age:    playerData[1],
+        region: playerData[2],
+        score:  playerData[3]
     }
-}
-console.log(playerTop);
+    highScores.push(score);
+    
+    highScores.sort( (a,b) => b.score - a.score);
+    
+    highScores.splice(5);
+    
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 
-/*
-Tops piecās daļās, katrā daļā ir array, kurā ir visa informācija par spēlētāju.
-Punkti atrodas beigās.
-*/ 
+}
